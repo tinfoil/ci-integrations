@@ -1,0 +1,19 @@
+trigger:
+  - master
+stages:
+  - stage: Test
+    jobs:
+      - job: APIScan
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: ShellScript@2
+            inputs: 
+              scriptPath: run_scan.sh
+            env: {
+              TOKEN: '',
+              ACCESS_KEY: '',
+              API_ID: '',
+              SEVERITY_THRESHOLD: 'High',
+              POLL_WINDOW: '5'
+            }
